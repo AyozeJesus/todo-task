@@ -70,14 +70,15 @@ npm run preview     # Preview del build
 npm run test        # Tests unitarios
 npm run test:watch  # Tests en modo watch
 npm run cypress:open # Tests E2E interactivos
-npm run cypress:run  # Tests E2E en CI
+npm run cypress:run  # Tests E2E automáticos
 
 # Code Quality
 npm run lint        # Análisis ESLint
 npm run lint:fix    # Corregir errores ESLint automáticamente
 npm run format      # Formatear código con Prettier
 npm run format:check # Verificar formato Prettier
-npm run check-all   # Ejecutar lint + format + tests
+npm run check-quick # Verificación rápida (lint + format + unit tests)
+npm run check-all   # Verificación completa (lint + format + unit + E2E)
 ```
 
 ## 🏗️ Arquitectura
@@ -145,8 +146,11 @@ El proyecto implementa herramientas modernas de calidad de código:
 ### Scripts de Calidad
 
 ```bash
-# Verificación completa del proyecto
+# Verificación completa del proyecto (incluye E2E)
 npm run check-all
+
+# Verificación rápida (sin E2E)
+npm run check-quick
 
 # Análisis de código
 npm run lint
