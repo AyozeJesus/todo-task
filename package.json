@@ -10,13 +10,16 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
+    "cypress:open": "start-server-and-test dev http://localhost:5173 'cypress open'",
+    "cypress:run": "start-server-and-test dev http://localhost:5173 'cypress run'",
+    "cypress:open-only": "cypress open",
+    "cypress:run-only": "cypress run",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext ts,tsx --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check-all": "npm run lint && npm run format:check && npm run test"
+    "check-all": "npm run lint && npm run format:check && npm run test && npm run cypress:run",
+    "check-quick": "npm run lint && npm run format:check && npm run test"
   },
   "dependencies": {
     "jquery": "^3.7.1",
@@ -42,6 +45,7 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "jsdom": "^24.0.0",
     "prettier": "^3.6.2",
+    "start-server-and-test": "^2.0.12",
     "typescript": "^5.4.5",
     "typescript-eslint": "^8.35.1",
     "vite": "^5.2.0",

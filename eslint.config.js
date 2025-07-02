@@ -91,5 +91,11 @@ export default tseslint.config(
       'no-console': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
     },
+  },
+  {
+    files: ['vitest.setup.ts'],
+    rules: {
+      'no-console': 'off',
+    },
   }
 );

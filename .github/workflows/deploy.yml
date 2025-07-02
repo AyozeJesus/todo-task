@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     # Only deploy after CI checks pass
     needs: []
-    
+
     permissions:
       contents: read
       pages: write
@@ -30,7 +30,7 @@ jobs:
         run: npm ci
 
       - name: Run quality checks
-        run: npm run check-all
+        run: npm run check-quick
 
       - name: Build project
         run: npm run build
