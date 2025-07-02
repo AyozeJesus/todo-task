@@ -5,8 +5,11 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import react from 'eslint-plugin-react';
 import prettier from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-config-prettier';
+import type { TSESLint } from '@typescript-eslint/utils';
 
-export default tseslint.config(
+type ESLintConfig = TSESLint.FlatConfig.Config;
+
+const eslintConfig: ESLintConfig[] = tseslint.config(
   {
     ignores: ['dist', 'node_modules', 'cypress/screenshots', 'cypress/videos'],
   },
@@ -99,3 +102,5 @@ export default tseslint.config(
     },
   }
 );
+
+export default eslintConfig;
