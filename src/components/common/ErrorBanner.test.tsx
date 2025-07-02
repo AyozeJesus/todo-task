@@ -5,7 +5,9 @@ import { ErrorBanner } from './ErrorBanner';
 describe('ErrorBanner', () => {
   it('renders messages for error codes', () => {
     render(<ErrorBanner errorCodes={['empty', 'duplicate']} />);
-    const banner = screen.getByText('La tarea no puede estar vacía.').closest('.error-banner');
+    const banner = screen
+      .getByText('La tarea no puede estar vacía.')
+      .closest('.error-banner');
     expect(banner).toHaveTextContent('La tarea no puede estar vacía.');
     expect(banner).toHaveTextContent('Esa tarea ya existe.');
   });
@@ -14,4 +16,4 @@ describe('ErrorBanner', () => {
     render(<ErrorBanner errorCodes={[]} />);
     expect(screen.queryByText('La tarea no puede estar vacía.')).toBeNull();
   });
-}); 
+});

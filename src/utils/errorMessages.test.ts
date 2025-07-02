@@ -24,4 +24,4 @@ describe('errorMessages', () => {
   it('getMessages returns empty array for empty input', () => {
     expect(getMessages([])).toEqual([]);
   });
-}); 
+});

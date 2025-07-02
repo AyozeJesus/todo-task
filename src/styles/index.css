@@ -6,9 +6,9 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -456,24 +456,24 @@ body {
   body {
     padding: 1rem;
   }
-  
+
   .content {
     grid-template-columns: 1fr;
   }
-  
+
   .react-section {
     border-right: none;
     border-bottom: 1px solid #e5e7eb;
   }
-  
+
   .header h1 {
     font-size: 2rem;
   }
-  
+
   .header p {
     font-size: 1rem;
   }
-  
+
   .todo-form {
     flex-direction: column;
   }
@@ -484,16 +484,16 @@ body {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
   }
-  
+
   .stat-item {
     padding: 0.75rem;
   }
-  
+
   .stat-number {
     font-size: 1.5rem;
   }
-  
+
   .stat-label {
     font-size: 0.75rem;
   }
-} 
+}

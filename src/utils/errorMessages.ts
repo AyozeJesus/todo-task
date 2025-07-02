@@ -8,5 +8,5 @@ export const errorMessages: Record<string, string> = {
 };
 
 export function getMessages(codes: string[] = []): string[] {
-  return codes.map((code) => errorMessages[code] || 'Error desconocido');
-} 
+  return codes.map(code => errorMessages[code] || 'Error desconocido');
+}

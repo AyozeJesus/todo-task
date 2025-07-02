@@ -1,0 +1,29 @@
+# Build outputs
+dist/
+node_modules/
+build/
+
+# Generated files
+*.min.js
+*.min.css
+
+# Test outputs
+coverage/
+cypress/screenshots/
+cypress/videos/
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Configuration files that have specific formatting
+.eslintrc.js
+.eslintrc.json
+vite.config.ts
+vitest.config.ts
+cypress.config.ts
+
+# OS files
+.DS_Store
+Thumbs.db 

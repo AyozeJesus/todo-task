@@ -18,6 +18,7 @@ La aplicación se despliega automáticamente en GitHub Pages cada vez que se hac
 ## 🎯 Características Principales
 
 ### ✅ Funcionalidades Implementadas
+
 - **Gestión completa de tareas**: Añadir, completar y eliminar
 - **Validaciones robustas**: Texto vacío, duplicados, longitud máxima (20 caracteres)
 - **Estadísticas en tiempo real**: Total, completadas, pendientes y progreso
@@ -26,21 +27,25 @@ La aplicación se despliega automáticamente en GitHub Pages cada vez que se hac
 - **Manejo avanzado de errores**: Múltiples errores simultáneos
 
 ### 🔧 Características Técnicas
+
 - **TypeScript estricto**: Sin tipos `any`, tipado completo
 - **Arquitectura modular**: Componentes reutilizables y bien organizados
-- **Testing exhaustivo**: Unitario, integración y E2E (33 tests)
+- **Testing exhaustivo**: Unitario, integración y E2E (34 tests)
+- **Code Quality**: ESLint + Prettier con reglas estrictas
+- **CI/CD completo**: Lint, tests y deploy automático
 - **Responsive design**: Adaptable a móviles y desktop
 - **Bundle optimizado**: Build de producción de ~235KB
 - **SEO friendly**: Meta tags y accesibilidad
-- **CI/CD automático**: Despliegue automático en GitHub Pages
 
 ## 🚀 Inicio Rápido
 
 ### Prerrequisitos
-- Node.js 16+ 
+
+- Node.js 16+
 - npm o yarn
 
 ### Instalación
+
 ```bash
 # Clonar el repositorio
 git clone <repository-url>
@@ -54,19 +59,31 @@ npm run dev
 ```
 
 ### Scripts Disponibles
+
 ```bash
+# Desarrollo
 npm run dev         # Servidor de desarrollo
 npm run build       # Build de producción
 npm run preview     # Preview del build
+
+# Testing
 npm run test        # Tests unitarios
 npm run test:watch  # Tests en modo watch
 npm run cypress:open # Tests E2E interactivos
 npm run cypress:run  # Tests E2E en CI
+
+# Code Quality
+npm run lint        # Análisis ESLint
+npm run lint:fix    # Corregir errores ESLint automáticamente
+npm run format      # Formatear código con Prettier
+npm run format:check # Verificar formato Prettier
+npm run check-all   # Ejecutar lint + format + tests
 ```
 
 ## 🏗️ Arquitectura
 
 ### Estructura del Proyecto
+
 ```
 src/
 ├── App.tsx                 # Componente principal
@@ -91,6 +108,7 @@ src/
 ```
 
 ### Flujo de Datos
+
 ```mermaid
 graph TD
     A[jQuery Input] -->|CustomEvent: todo:add| B[React App]
@@ -98,20 +116,59 @@ graph TD
     C -->|State Update| D[Re-render Components]
     D -->|CustomEvent: todo:count-changed| E[jQuery Counter]
     D -->|CustomEvent: todo:external-added| F[jQuery Feedback]
-    
+
     G[React Form] -->|onAdd| C
     H[Task Actions] -->|onToggle/onDelete| C
+```
+
+## 🔍 Calidad de Código
+
+### ESLint + Prettier
+
+El proyecto implementa herramientas modernas de calidad de código:
+
+#### ESLint Configuration
+
+- **TypeScript ESLint**: Reglas específicas para TypeScript
+- **React Hooks**: Validación de reglas de hooks
+- **React Refresh**: Optimización para desarrollo
+- **Reglas estrictas**: Cero warnings en producción
+- **Configuración específica**: Tests y Cypress con reglas relajadas
+
+#### Prettier Configuration
+
+- **Formato consistente**: Single quotes, semicolons, 80 chars
+- **Integración ESLint**: Sin conflictos entre herramientas
+- **Auto-formatting**: Formateo automático en save
+- **Ignore patterns**: Exclusión de archivos generados
+
+### Scripts de Calidad
+
+```bash
+# Verificación completa del proyecto
+npm run check-all
+
+# Análisis de código
+npm run lint
+
+# Correción automática
+npm run lint:fix
+
+# Formateo de código
+npm run format
 ```
 
 ## 🧪 Testing
 
 ### Cobertura de Tests
-- **33 tests** ejecutándose exitosamente
+
+- **34 tests** ejecutándose exitosamente
 - **Unitarios**: Componentes aislados
 - **Integración**: Flujos completos de usuario
 - **E2E**: Cypress para escenarios reales
 
 ### Ejecutar Tests
+
 ```bash
 # Tests unitarios
 npm run test
@@ -121,6 +178,7 @@ npm run cypress:open
 ```
 
 ### Casos de Prueba Cubiertos
+
 - ✅ Validación de entrada vacía
 - ✅ Detección de duplicados
 - ✅ Límite de caracteres
@@ -134,6 +192,7 @@ npm run cypress:open
 ## 🚀 Despliegue
 
 ### GitHub Pages (Automático)
+
 El proyecto se despliega automáticamente en GitHub Pages usando GitHub Actions:
 
 1. **Push a main** → Trigger automático
@@ -144,6 +203,7 @@ El proyecto se despliega automáticamente en GitHub Pages usando GitHub Actions:
 **URL del sitio**: https://ayozeleon.github.io/AimHarder-task/
 
 ### Configuración del Despliegue
+
 - **Vite**: Configurado con `base: '/AimHarder-task/'`
 - **GitHub Actions**: Workflow en `.github/workflows/deploy.yml`
 - **Permisos**: Pages write, contents read, id-token write
@@ -151,6 +211,7 @@ El proyecto se despliega automáticamente en GitHub Pages usando GitHub Actions:
 ## 🎨 Diseño
 
 ### UI/UX Profesional
+
 - **Gradientes modernos**: Diseño visualmente atractivo
 - **Micro-interacciones**: Hover effects y transiciones suaves
 - **Iconografía consistente**: Emojis temáticos de gimnasio
@@ -158,6 +219,7 @@ El proyecto se despliega automáticamente en GitHub Pages usando GitHub Actions:
 - **Estados visuales claros**: Loading, error, success
 
 ### Responsive Design
+
 - **Mobile-first**: Adaptable desde 320px
 - **Breakpoints**: Tablet y desktop
 - **Grid flexible**: CSS Grid con fallbacks
@@ -166,27 +228,30 @@ El proyecto se despliega automáticamente en GitHub Pages usando GitHub Actions:
 ## 🔌 Integración React + jQuery
 
 ### Comunicación Bidireccional
+
 La aplicación demuestra integración seamless entre React y jQuery:
 
 #### jQuery → React
+
 ```javascript
 // Inyectar tarea desde jQuery
-const event = new CustomEvent('todo:add', { 
-  detail: { text: 'Nueva tarea desde jQuery' } 
+const event = new CustomEvent('todo:add', {
+  detail: { text: 'Nueva tarea desde jQuery' },
 });
 document.dispatchEvent(event);
 ```
 
 #### React → jQuery
+
 ```javascript
 // Escuchar cambios desde React
-$(document).on('todo:count-changed', function(e) {
+$(document).on('todo:count-changed', function (e) {
   const { total, completed } = e.originalEvent.detail;
   $('#task-count').text(`${completed}/${total}`);
 });
 
 // Escuchar adición externa exitosa
-$(document).on('todo:external-added', function() {
+$(document).on('todo:external-added', function () {
   // Mostrar feedback visual
 });
 ```
@@ -194,8 +259,9 @@ $(document).on('todo:external-added', function() {
 ## 📋 Requisitos Cumplidos
 
 ### ✅ Funcionales
+
 - [x] Añadir tareas (input + botón)
-- [x] Marcar tareas como completadas  
+- [x] Marcar tareas como completadas
 - [x] Eliminar tareas
 - [x] Mostrar total y completadas
 - [x] Validación de entrada
@@ -203,6 +269,7 @@ $(document).on('todo:external-added', function() {
 - [x] Integración jQuery bidireccional
 
 ### ✅ Técnicos
+
 - [x] Componente React agnóstico
 - [x] Una página HTML con jQuery
 - [x] Sin librerías externas (solo React/jQuery)
@@ -214,16 +281,16 @@ $(document).on('todo:external-added', function() {
 
 ## 🔧 Tecnologías
 
-| Tecnología | Versión | Propósito |
-|------------|---------|-----------|
-| React | 18.3.0 | UI Framework |
-| TypeScript | 5.4.5 | Type Safety |
-| jQuery | 3.7.1 | Legacy Integration |
-| Vite | 5.2.0 | Build Tool |
-| Vitest | 1.5.0 | Unit Testing |
-| Cypress | 13.6.4 | E2E Testing |
-| React Testing Library | 14.2.1 | Component Testing |
-| GitHub Actions | - | CI/CD Pipeline |
+| Tecnología            | Versión | Propósito          |
+| --------------------- | ------- | ------------------ |
+| React                 | 18.3.0  | UI Framework       |
+| TypeScript            | 5.4.5   | Type Safety        |
+| jQuery                | 3.7.1   | Legacy Integration |
+| Vite                  | 5.2.0   | Build Tool         |
+| Vitest                | 1.5.0   | Unit Testing       |
+| Cypress               | 13.6.4  | E2E Testing        |
+| React Testing Library | 14.2.1  | Component Testing  |
+| GitHub Actions        | -       | CI/CD Pipeline     |
 
 ## 📈 Rendimiento
 
@@ -242,4 +309,4 @@ $(document).on('todo:external-added', function() {
 
 ---
 
-*Desarrollado con ❤️ para AimHarder - Prueba Técnica 2025* 
+_Desarrollado con ❤️ para AimHarder - Prueba Técnica 2025_

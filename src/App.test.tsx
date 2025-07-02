@@ -6,12 +6,15 @@ test('shows counts updating when adding and completing a task', async () => {
   const user = userEvent.setup();
   render(<App />);
 
-  await user.type(screen.getByPlaceholderText(/3 series de press banca/i), 'Test Task');
+  await user.type(
+    screen.getByPlaceholderText(/3 series de press banca/i),
+    'Test Task'
+  );
   await user.click(screen.getByRole('button', { name: /añadir ejercicio/i }));
 
   // Check that task was added by verifying it appears in the list
   expect(screen.getByText('Test Task')).toBeInTheDocument();
-  
+
   // Check stats display - look for specific stat items
   expect(screen.getByText('Total')).toBeInTheDocument();
   expect(screen.getByText('Completados')).toBeInTheDocument();
@@ -19,7 +22,7 @@ test('shows counts updating when adding and completing a task', async () => {
 
   // Complete the task
   await user.click(screen.getByRole('checkbox'));
-  
+
   // Should show completed count
   expect(screen.getByText('Completados')).toBeInTheDocument();
 });
@@ -63,4 +66,4 @@ test('deletes tasks correctly', async () => {
   // Should only have Task 2
   expect(screen.queryByText('Task 1')).not.toBeInTheDocument();
   expect(screen.getByText('Task 2')).toBeInTheDocument();
-}); 
+});

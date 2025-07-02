@@ -23,4 +23,4 @@ export interface StatsProps {
 
 export interface ErrorBannerProps {
   codes: string[];
-} 
+}

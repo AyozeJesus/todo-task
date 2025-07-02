@@ -11,15 +11,15 @@ describe('Stats', () => {
       { id: 4, text: 'Task 4', completed: false },
       { id: 5, text: 'Task 5', completed: false },
     ];
-    
+
     render(<Stats tasks={tasks} />);
-    
+
     // Check for all the stats values
     expect(screen.getByText('5')).toBeInTheDocument(); // Total
     expect(screen.getByText('3')).toBeInTheDocument(); // Completed
     expect(screen.getByText('2')).toBeInTheDocument(); // Pending
     expect(screen.getByText('60%')).toBeInTheDocument(); // Progress
-    
+
     // Check for labels in Spanish
     expect(screen.getByText('Total')).toBeInTheDocument();
     expect(screen.getByText('Completados')).toBeInTheDocument();
@@ -29,9 +29,9 @@ describe('Stats', () => {
 
   test('displays zero counts correctly', () => {
     render(<Stats tasks={[]} />);
-    
+
     // Check for zero values
     expect(screen.getAllByText('0')).toHaveLength(3); // Total, completed, pending
     expect(screen.getByText('0%')).toBeInTheDocument(); // Progress
   });
-}); 
+});

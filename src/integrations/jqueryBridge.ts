@@ -1,10 +1,10 @@
 /**
  * jQuery Bridge for Todo App Integration
- * 
+ *
  * This module provides integration between the React Todo component
  * and external jQuery-based pages. It enables bidirectional communication
  * through custom events.
- * 
+ *
  * Events:
  * - todo:add (jQuery → React): Add a task from external code
  * - todo:count-changed (React → jQuery): Notify when task counts change
@@ -14,7 +14,9 @@
 // Global interface for todo bridge functionality
 export interface TodoBridge {
   addTask: (text: string) => void;
-  onCountChanged: (callback: (total: number, completed: number) => void) => void;
+  onCountChanged: (
+    callback: (total: number, completed: number) => void
+  ) => void;
   onExternalAdded: (callback: () => void) => void;
 }
 
@@ -32,9 +34,9 @@ function announceToScreenReader(message: string) {
   announcement.setAttribute('aria-atomic', 'true');
   announcement.setAttribute('class', 'sr-only');
   announcement.textContent = message;
-  
+
   document.body.appendChild(announcement);
-  
+
   // Remove the announcement after a short delay
   setTimeout(() => {
     document.body.removeChild(announcement);
@@ -44,7 +46,9 @@ function announceToScreenReader(message: string) {
 // Initialize the bridge
 window.TodoBridge = {
   addTask: (text: string) => {
-    document.dispatchEvent(new CustomEvent('todo:add', { detail: { task: text } }));
+    document.dispatchEvent(
+      new CustomEvent('todo:add', { detail: { task: text } })
+    );
   },
 
   onCountChanged: (callback: (total: number, completed: number) => void) => {
@@ -64,8 +68,10 @@ window.announceToScreenReader = announceToScreenReader;
 
 $(function () {
   // Listen to count changes from React
-  document.addEventListener('todo:count-changed', (e) => {
-    const { total, completed } = (e as CustomEvent<{ total: number; completed: number }>).detail;
+  document.addEventListener('todo:count-changed', e => {
+    const { total, completed } = (
+      e as CustomEvent<{ total: number; completed: number }>
+    ).detail;
     $('#task-count').text(`${total}/${completed}`);
   });
 
@@ -74,8 +80,10 @@ $(function () {
     const taskText = $('#task-input-jq').val() as string;
     const trimmed = taskText.trim();
     if (trimmed) {
-      document.dispatchEvent(new CustomEvent('todo:add', { detail: { task: trimmed } }));
+      document.dispatchEvent(
+        new CustomEvent('todo:add', { detail: { task: trimmed } })
+      );
       $('#task-input-jq').val('');
     }
   });
-}); 
+});
