@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     # Only deploy after CI checks pass
     needs: []
-    
+
     permissions:
       contents: read
       pages: write
