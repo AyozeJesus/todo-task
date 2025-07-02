@@ -13,7 +13,12 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="todo-form" role="form" aria-label="Formulario para añadir nueva tarea">
+    <form
+      onSubmit={handleSubmit}
+      className="todo-form"
+      role="form"
+      aria-label="Formulario para añadir nueva tarea"
+    >
       <label htmlFor="todo-input" className="sr-only">
         {UI_TEXT.FORM.INPUT_LABEL}
       </label>
@@ -21,7 +26,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
         id="todo-input"
         type="text"
         value={input}
-        onChange={(e) => setInput(e.target.value)}
+        onChange={e => setInput(e.target.value)}
         placeholder={UI_TEXT.FORM.PLACEHOLDER}
         className="todo-input"
         maxLength={20}
@@ -31,8 +36,8 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
       <div id="todo-input-help" className="sr-only">
         {UI_TEXT.FORM.INPUT_HELP}
       </div>
-      <button 
-        type="submit" 
+      <button
+        type="submit"
         className="todo-button"
         aria-describedby="todo-button-help"
       >
@@ -43,4 +48,4 @@ export const TodoForm: React.FC<TodoFormProps> = ({ onAdd }) => {
       </div>
     </form>
   );
-}; 
+};

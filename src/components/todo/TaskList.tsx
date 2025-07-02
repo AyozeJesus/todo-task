@@ -9,11 +9,21 @@ interface TaskListProps {
   onDelete: (id: number) => void;
 }
 
-export const TaskList: React.FC<TaskListProps> = ({ tasks, onToggle, onDelete }) => {
+export const TaskList: React.FC<TaskListProps> = ({
+  tasks,
+  onToggle,
+  onDelete,
+}) => {
   if (!tasks.length) {
     return (
-      <div className="empty-state" role="status" aria-label="Estado de lista vacía">
-        <span className="empty-icon" aria-hidden="true">{UI_TEXT.EMPTY_STATE.ICON}</span>
+      <div
+        className="empty-state"
+        role="status"
+        aria-label="Estado de lista vacía"
+      >
+        <span className="empty-icon" aria-hidden="true">
+          {UI_TEXT.EMPTY_STATE.ICON}
+        </span>
         <p className="empty-text">{UI_TEXT.EMPTY_STATE.MESSAGE}</p>
       </div>
     );
@@ -24,15 +34,20 @@ export const TaskList: React.FC<TaskListProps> = ({ tasks, onToggle, onDelete })
   return (
     <div role="region" aria-label="Lista de tareas de gimnasio">
       <h3 className="sr-only">Tareas de ejercicios ({tasks.length} total)</h3>
-      <ul 
-        className="task-list" 
+      <ul
+        className="task-list"
         role="list"
         aria-label={`Lista con ${tasks.length} tareas, ${completedCount} completadas`}
       >
-        {tasks.map((task) => (
-          <TaskItem key={task.id} task={task} onToggle={onToggle} onDelete={onDelete} />
+        {tasks.map(task => (
+          <TaskItem
+            key={task.id}
+            task={task}
+            onToggle={onToggle}
+            onDelete={onDelete}
+          />
         ))}
       </ul>
     </div>
   );
-}; 
+};

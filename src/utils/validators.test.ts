@@ -21,7 +21,9 @@ describe('validateTaskText', () => {
   });
 
   it('returns multiple errors when appropriate', () => {
-    const errors = validateTaskText('', [{ id: 1, text: '', completed: false }]);
+    const errors = validateTaskText('', [
+      { id: 1, text: '', completed: false },
+    ]);
     expect(errors).toContain('empty');
   });
 
@@ -39,4 +41,4 @@ describe('validateTaskText', () => {
     const errors = validateTaskText(textWithSpaces, []);
     expect(errors).toEqual([]);
   });
-}); 
+});

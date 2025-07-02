@@ -50,7 +50,9 @@ it('adds task via CustomEvent', async () => {
   const { result } = renderHook(() => useTodo());
 
   await act(async () => {
-    document.dispatchEvent(new CustomEvent('todo:add', { detail: { task: 'External Task' } }));
+    document.dispatchEvent(
+      new CustomEvent('todo:add', { detail: { task: 'External Task' } })
+    );
   });
 
   expect(result.current.tasks.length).toBe(1);
@@ -93,9 +95,11 @@ it('emits external-added event only when adding tasks externally', async () => {
 
   // Adding via CustomEvent should fire external-added event
   await act(async () => {
-    document.dispatchEvent(new CustomEvent('todo:add', { detail: { task: 'External Task' } }));
+    document.dispatchEvent(
+      new CustomEvent('todo:add', { detail: { task: 'External Task' } })
+    );
   });
   expect(externalAddedFired).toBe(true);
 
   document.removeEventListener('todo:external-added', handler);
-}); 
+});

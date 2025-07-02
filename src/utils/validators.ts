@@ -1,7 +1,10 @@
 import { Task } from '../types/todo';
 import { MAX_TASK_LENGTH } from '../config/constants';
 
-export function validateTaskText(text: string, existingTasks: Task[]): string[] {
+export function validateTaskText(
+  text: string,
+  existingTasks: Task[]
+): string[] {
   const errors: string[] = [];
   const trimmed = text.trim();
 
@@ -16,9 +19,13 @@ export function validateTaskText(text: string, existingTasks: Task[]): string[] 
   }
 
   // Check for duplicates (case insensitive)
-  if (existingTasks.some((task) => task.text.toLowerCase() === trimmed.toLowerCase())) {
+  if (
+    existingTasks.some(
+      task => task.text.toLowerCase() === trimmed.toLowerCase()
+    )
+  ) {
     errors.push('duplicate');
   }
 
   return errors;
-} 
+}

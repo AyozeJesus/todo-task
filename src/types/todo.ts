@@ -3,8 +3,8 @@ export interface Task {
   text: string;
   completed: boolean;
 }
- 
+
 export interface TaskLike {
   text: string;
   completed?: boolean;
-} 
+}

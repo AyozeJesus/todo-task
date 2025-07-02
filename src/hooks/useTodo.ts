@@ -15,16 +15,23 @@ const initialState: TodoState = {
 function reducer(state: TodoState, action: TodoAction): TodoState {
   switch (action.type) {
     case 'ADD_TASK':
-      return { ...state, tasks: [...state.tasks, action.payload], errorCodes: [] };
+      return {
+        ...state,
+        tasks: [...state.tasks, action.payload],
+        errorCodes: [],
+      };
     case 'TOGGLE_TASK':
       return {
         ...state,
         tasks: state.tasks.map((t: Task) =>
-          t.id === action.payload ? { ...t, completed: !t.completed } : t,
+          t.id === action.payload ? { ...t, completed: !t.completed } : t
         ),
       };
     case 'DELETE_TASK':
-      return { ...state, tasks: state.tasks.filter((t) => t.id !== action.payload) };
+      return {
+        ...state,
+        tasks: state.tasks.filter(t => t.id !== action.payload),
+      };
     case 'SET_ERRORS':
       return { ...state, errorCodes: action.payload };
     default:
@@ -42,15 +49,25 @@ export function useTodo() {
         dispatch({ type: 'SET_ERRORS', payload: errors });
         return false;
       }
-      const newTask: Task = { id: nextId++, text: text.trim(), completed: false };
+      const newTask: Task = {
+        id: nextId++,
+        text: text.trim(),
+        completed: false,
+      };
       dispatch({ type: 'ADD_TASK', payload: newTask });
       return true;
     },
-    [state.tasks],
+    [state.tasks]
   );
 
-  const toggleTask = useCallback((id: number) => dispatch({ type: 'TOGGLE_TASK', payload: id }), []);
-  const deleteTask = useCallback((id: number) => dispatch({ type: 'DELETE_TASK', payload: id }), []);
+  const toggleTask = useCallback(
+    (id: number) => dispatch({ type: 'TOGGLE_TASK', payload: id }),
+    []
+  );
+  const deleteTask = useCallback(
+    (id: number) => dispatch({ type: 'DELETE_TASK', payload: id }),
+    []
+  );
 
   // Emit event when tasks change
   useEffect(() => {
@@ -59,7 +76,7 @@ export function useTodo() {
     document.dispatchEvent(
       new CustomEvent('todo:count-changed', {
         detail: { total, completed },
-      }),
+      })
     );
   }, [state.tasks]);
 
@@ -87,4 +104,4 @@ export function useTodo() {
     toggleTask,
     deleteTask,
   } as const;
-} 
+}

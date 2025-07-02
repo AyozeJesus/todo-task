@@ -1,32 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AimHarder - Gestor de Tareas para Gimnasio</title>
-    <meta name="description" content="Gestor de tareas profesional desarrollado con React y jQuery para seguimiento de actividades de gimnasio" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>" />
+    <meta
+      name="description"
+      content="Gestor de tareas profesional desarrollado con React y jQuery para seguimiento de actividades de gimnasio"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>"
+    />
   </head>
   <body>
     <!-- Skip to content link for keyboard navigation -->
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
-    
+
     <div class="main-container">
       <!-- Header Section -->
       <header class="header" role="banner">
         <h1>AimHarder - Gestor de Tareas</h1>
-        <p>Sistema profesional de gestión de tareas para gimnasio. Desarrollado con React + jQuery con comunicación bidireccional.</p>
+        <p>
+          Sistema profesional de gestión de tareas para gimnasio. Desarrollado
+          con React + jQuery con comunicación bidireccional.
+        </p>
       </header>
 
       <!-- Main Content -->
-      <main id="main-content" class="content" role="main" aria-label="Contenido principal de la aplicación">
+      <main
+        id="main-content"
+        class="content"
+        role="main"
+        aria-label="Contenido principal de la aplicación"
+      >
         <!-- React Section -->
         <section class="react-section" aria-labelledby="react-section-title">
           <h2 id="react-section-title" class="section-title">
             <span class="react-badge">React</span>
             Componente Principal
           </h2>
-          <div id="react-root" role="application" aria-label="Aplicación de gestión de tareas"></div>
+          <div
+            id="react-root"
+            role="application"
+            aria-label="Aplicación de gestión de tareas"
+          ></div>
         </section>
 
         <!-- jQuery Integration Section -->
@@ -35,24 +53,32 @@
             <span class="jquery-badge">jQuery</span>
             Panel de Control
           </h2>
-          
+
           <div class="jquery-panel">
-            <h3 id="external-injection-title" style="margin-bottom: 1rem; color: #1f2937; font-weight: 600;">Inyección Externa de Tareas</h3>
+            <h3
+              id="external-injection-title"
+              style="margin-bottom: 1rem; color: #1f2937; font-weight: 600"
+            >
+              Inyección Externa de Tareas
+            </h3>
             <div role="group" aria-labelledby="external-injection-title">
-              <label for="task-input-jq" class="sr-only">Nueva tarea desde jQuery</label>
-              <input 
-                type="text" 
-                id="task-input-jq" 
+              <label for="task-input-jq" class="sr-only"
+                >Nueva tarea desde jQuery</label
+              >
+              <input
+                type="text"
+                id="task-input-jq"
                 class="jquery-input"
-                placeholder="Nueva tarea desde jQuery..." 
+                placeholder="Nueva tarea desde jQuery..."
                 maxlength="20"
                 aria-describedby="task-input-help"
               />
               <div id="task-input-help" class="sr-only">
-                Máximo 20 caracteres. Presiona Enter o el botón para añadir la tarea.
+                Máximo 20 caracteres. Presiona Enter o el botón para añadir la
+                tarea.
               </div>
-              <button 
-                id="add-task-jq" 
+              <button
+                id="add-task-jq"
                 class="jquery-button"
                 aria-describedby="add-task-help"
               >
@@ -62,22 +88,63 @@
                 Añade una nueva tarea a la lista desde el panel de jQuery
               </div>
             </div>
-            
-            <div class="counter-display" role="status" aria-live="polite" aria-label="Contador de tareas">
-              <div class="counter-label" id="counter-label">Contador Sincronizado</div>
-              <div class="counter-value" aria-describedby="counter-label counter-description">
+
+            <div
+              class="counter-display"
+              role="status"
+              aria-live="polite"
+              aria-label="Contador de tareas"
+            >
+              <div class="counter-label" id="counter-label">
+                Contador Sincronizado
+              </div>
+              <div
+                class="counter-value"
+                aria-describedby="counter-label counter-description"
+              >
                 <span id="task-count">0/0</span>
               </div>
-              <small id="counter-description" style="color: #64748b; font-size: 0.875rem; margin-top: 0.5rem; display: block;">
+              <small
+                id="counter-description"
+                style="
+                  color: #64748b;
+                  font-size: 0.875rem;
+                  margin-top: 0.5rem;
+                  display: block;
+                "
+              >
                 Completadas / Total
               </small>
             </div>
           </div>
 
           <!-- Technical Details -->
-          <div style="margin-top: 2rem; padding: 1.5rem; background: white; border-radius: 12px; border-left: 4px solid #10b981;" role="complementary" aria-labelledby="technical-features-title">
-            <h4 id="technical-features-title" style="color: #065f46; margin-bottom: 1rem; font-weight: 600;">✅ Características Técnicas</h4>
-            <ul style="color: #064e3b; line-height: 1.6; margin: 0; padding-left: 1.2rem;" role="list">
+          <div
+            style="
+              margin-top: 2rem;
+              padding: 1.5rem;
+              background: white;
+              border-radius: 12px;
+              border-left: 4px solid #10b981;
+            "
+            role="complementary"
+            aria-labelledby="technical-features-title"
+          >
+            <h4
+              id="technical-features-title"
+              style="color: #065f46; margin-bottom: 1rem; font-weight: 600"
+            >
+              ✅ Características Técnicas
+            </h4>
+            <ul
+              style="
+                color: #064e3b;
+                line-height: 1.6;
+                margin: 0;
+                padding-left: 1.2rem;
+              "
+              role="list"
+            >
               <li>✓ Comunicación React ↔ jQuery via CustomEvents</li>
               <li>✓ Validación completa (vacío, duplicados, longitud)</li>
               <li>✓ Gestión avanzada de errores</li>
@@ -91,12 +158,20 @@
       </main>
 
       <!-- Footer -->
-      <footer style="padding: 2rem; background: #f9fafb; text-align: center; border-top: 1px solid #e5e7eb;" role="contentinfo">
-        <p style="color: #64748b; margin: 0;">
-          <strong>Prueba Técnica AimHarder</strong> - 
-          Desarrollado con React 18, TypeScript, Vite y jQuery 3.7
+      <footer
+        style="
+          padding: 2rem;
+          background: #f9fafb;
+          text-align: center;
+          border-top: 1px solid #e5e7eb;
+        "
+        role="contentinfo"
+      >
+        <p style="color: #64748b; margin: 0">
+          <strong>Prueba Técnica AimHarder</strong> - Desarrollado con React 18,
+          TypeScript, Vite y jQuery 3.7
         </p>
-        <p style="color: #94a3b8; font-size: 0.875rem; margin: 0.5rem 0 0 0;">
+        <p style="color: #94a3b8; font-size: 0.875rem; margin: 0.5rem 0 0 0">
           Arquitectura escalable • Tests completos • Buenas prácticas
         </p>
       </footer>
@@ -115,23 +190,23 @@
     <script>
       $(function () {
         // Enter key support for jQuery input
-        $('#task-input-jq').on('keypress', function(e) {
+        $('#task-input-jq').on('keypress', function (e) {
           if (e.which === 13) {
             $('#add-task-jq').click();
           }
         });
 
         // Visual feedback on successful external task addition
-        $(document).on('todo:external-added', function() {
+        $(document).on('todo:external-added', function () {
           const button = $('#add-task-jq');
           const originalText = button.text();
           button.text('✅ ¡Añadida!');
-          
+
           // Announce to screen readers
           if (window.announceToScreenReader) {
             window.announceToScreenReader('Tarea añadida exitosamente');
           }
-          
+
           setTimeout(() => {
             button.text(originalText);
           }, 1000);
@@ -139,4 +214,4 @@
       });
     </script>
   </body>
-</html> 
+</html>

@@ -2,13 +2,17 @@ import React from 'react';
 import { TaskItemProps } from '../../types/components';
 import { UI_TEXT } from '../../constants/uiText';
 
-export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) => {
+export const TaskItem: React.FC<TaskItemProps> = ({
+  task,
+  onToggle,
+  onDelete,
+}) => {
   const taskId = `task-${task.id}`;
   const checkboxId = `checkbox-${task.id}`;
   const deleteId = `delete-${task.id}`;
 
   return (
-    <li 
+    <li
       className={`task-item ${task.completed ? 'completed' : ''}`}
       role="group"
       aria-labelledby={taskId}
@@ -22,15 +26,19 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) 
           className="task-checkbox"
           aria-describedby={`${taskId}-status`}
         />
-        <span id={taskId} className="task-text">{task.text}</span>
+        <span id={taskId} className="task-text">
+          {task.text}
+        </span>
         <span id={`${taskId}-status`} className="sr-only">
-          {task.completed ? UI_TEXT.TASK_ITEM.COMPLETED_STATUS : UI_TEXT.TASK_ITEM.PENDING_STATUS}
+          {task.completed
+            ? UI_TEXT.TASK_ITEM.COMPLETED_STATUS
+            : UI_TEXT.TASK_ITEM.PENDING_STATUS}
         </span>
       </label>
-      <button 
+      <button
         id={deleteId}
-        onClick={() => onDelete(task.id)} 
-        className="delete-btn" 
+        onClick={() => onDelete(task.id)}
+        className="delete-btn"
         aria-label={`Eliminar tarea: ${task.text}`}
         aria-describedby={`${deleteId}-help`}
       >
@@ -41,4 +49,4 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) 
       </div>
     </li>
   );
-}; 
+};
