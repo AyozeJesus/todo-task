@@ -290,15 +290,15 @@ $(document).on('todo:external-added', function () {
 | React                 | 18.3.0  | UI Framework       |
 | TypeScript            | 5.4.5   | Type Safety        |
 | jQuery                | 3.7.1   | Legacy Integration |
-| Vite                  | 5.2.0   | Build Tool         |
-| Vitest                | 1.5.0   | Unit Testing       |
+| Vite                  | 5.4.19  | Build Tool         |
+| Vitest                | 1.6.1   | Unit Testing       |
 | Cypress               | 13.6.4  | E2E Testing        |
 | React Testing Library | 14.2.1  | Component Testing  |
 | GitHub Actions        | -       | CI/CD Pipeline     |
 
 ## 📈 Rendimiento
 
-- **Bundle size**: 235KB (gzip: 79KB)
+- **Bundle size**: ~157KB (JS: 150.89KB, CSS: 6.20KB, gzip: ~50KB)
 - **First Load**: <1s en conexión rápida
 - **Runtime**: Optimizado con useReducer
 - **Memory**: Gestión eficiente del estado
@@ -308,6 +308,7 @@ $(document).on('todo:external-added', function () {
 ## 🤝 Contacto
 
 **Desarrollador**: Ayoze Jesús León Santos
+**GitHub**: https://github.com/AyozeJesus
 **Email**: Ayozejesusleonsantos@gmail.com
 **LinkedIn**: https://www.linkedin.com/in/ayozeleonsantos/
 
