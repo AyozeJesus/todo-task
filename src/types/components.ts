@@ -17,8 +17,11 @@ export interface TaskListProps {
 }
 
 export interface StatsProps {
-  total: number;
-  completed: number;
+  tasks: Task[];
+  total?: number;
+  completed?: number;
+  pending?: number;
+  percentage?: number;
 }
 
 export interface ErrorBannerProps {

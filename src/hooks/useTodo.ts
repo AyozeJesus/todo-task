@@ -5,10 +5,12 @@ import { INITIAL_TASK_ID } from '../config/constants';
 import { validateTaskText } from '../utils/validators';
 import { TodoState } from '../types/state';
 
-let nextId = INITIAL_TASK_ID;
+// Recover nextId from localStorage or use initial value
+let nextId = Number(localStorage.getItem('nextId')) || INITIAL_TASK_ID;
 
+// Recover tasks from localStorage or use empty array
 const initialState: TodoState = {
-  tasks: [],
+  tasks: JSON.parse(localStorage.getItem('tasks') || '[]'),
   errorCodes: [],
 };
 
@@ -68,6 +70,12 @@ export function useTodo() {
     (id: number) => dispatch({ type: 'DELETE_TASK', payload: id }),
     []
   );
+
+  // Save tasks and nextId to localStorage
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(state.tasks));
+    localStorage.setItem('nextId', String(nextId));
+  }, [state.tasks]);
 
   // Emit event when tasks change
   useEffect(() => {

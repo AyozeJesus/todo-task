@@ -1,10 +1,7 @@
 import React from 'react';
 import { getMessages } from '../../utils/errorMessages';
 import { UI_TEXT } from '../../constants/uiText';
-
-interface ErrorBannerProps {
-  errorCodes: string[];
-}
+import { ErrorBannerProps } from '../../types/error';
 
 export const ErrorBanner: React.FC<ErrorBannerProps> = ({ errorCodes }) => {
   if (errorCodes.length === 0) {

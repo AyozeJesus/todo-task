@@ -1,43 +1,13 @@
 import React from 'react';
-import { Task } from '../../types/todo';
 import { UI_TEXT } from '../../constants/uiText';
-
-interface StatsProps {
-  tasks: Task[];
-}
+import { StatsProps } from '../../types/components';
+import { statsData } from '../../config/constants';
+import { getStats } from '../../constants/task';
 
 export const Stats: React.FC<StatsProps> = ({ tasks }) => {
-  const total = tasks.length;
-  const completed = tasks.filter(task => task.completed).length;
-  const pending = total - completed;
-  const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
-
-  const statsData = [
-    {
-      id: 'total',
-      value: total,
-      label: UI_TEXT.STATS.LABELS.TOTAL,
-      description: UI_TEXT.STATS.DESCRIPTIONS.TOTAL,
-    },
-    {
-      id: 'completed',
-      value: completed,
-      label: UI_TEXT.STATS.LABELS.COMPLETED,
-      description: UI_TEXT.STATS.DESCRIPTIONS.COMPLETED,
-    },
-    {
-      id: 'pending',
-      value: pending,
-      label: UI_TEXT.STATS.LABELS.PENDING,
-      description: UI_TEXT.STATS.DESCRIPTIONS.PENDING,
-    },
-    {
-      id: 'progress',
-      value: `${percentage}%`,
-      label: UI_TEXT.STATS.LABELS.PROGRESS,
-      description: UI_TEXT.STATS.DESCRIPTIONS.PROGRESS,
-    },
-  ];
+  const { totalTasks, completedTasks, pendingTasks, percentage } =
+    getStats(tasks);
+  const stats = statsData(totalTasks, completedTasks, pendingTasks, percentage);
 
   return (
     <section
@@ -54,7 +24,7 @@ export const Stats: React.FC<StatsProps> = ({ tasks }) => {
         role="group"
         aria-label="Métricas de progreso"
       >
-        {statsData.map(stat => (
+        {stats.map(stat => (
           <div
             key={stat.id}
             className="stat-item"
