@@ -1,4 +1,5 @@
 import { TodoBridge } from '../types/bridge';
+import { Task } from '../types/todo';
 
 /**
  * jQuery Bridge for Todo App Integration
@@ -60,6 +61,15 @@ window.TodoBridge = {
 window.announceToScreenReader = announceToScreenReader;
 
 $(function () {
+  // Update the counter from localStorage on page load
+  function updateCounterFromStorage() {
+    const tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+    const total = tasks.length;
+    const completed = tasks.filter((t: Task) => t.completed).length;
+    $('#task-count').text(`${total}/${completed}`);
+  }
+  updateCounterFromStorage();
+
   // Listen to count changes from React
   document.addEventListener('todo:count-changed', e => {
     const { total, completed } = (
