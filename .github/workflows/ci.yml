@@ -73,7 +73,7 @@ jobs:
       - name: Run ESLint with detailed output
         run: |
           npm run lint -- --format=json --output-file=eslint-report.json || true
-          npm run lint -- --format=compact
+          npm run lint -- --format=stylish
         continue-on-error: true
 
       - name: Upload ESLint report
