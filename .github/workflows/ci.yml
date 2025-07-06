@@ -56,7 +56,6 @@ jobs:
   lint-report:
     runs-on: ubuntu-latest
     name: Detailed Lint Report
-    if: github.event_name == 'pull_request'
 
     steps:
       - name: Checkout code
@@ -79,7 +78,7 @@ jobs:
 
       - name: Upload ESLint report
         uses: actions/upload-artifact@v4
-        if: always()
+        if: github.event_name == 'pull_request' || github.event_name == 'push'
         with:
           name: eslint-report
           path: eslint-report.json
