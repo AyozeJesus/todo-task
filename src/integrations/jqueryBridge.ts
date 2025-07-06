@@ -1,3 +1,5 @@
+import { TodoBridge } from '../types/bridge';
+
 /**
  * jQuery Bridge for Todo App Integration
  *
@@ -10,15 +12,6 @@
  * - todo:count-changed (React → jQuery): Notify when task counts change
  * - todo:external-added (React → jQuery): Notify when external task was added successfully
  */
-
-// Global interface for todo bridge functionality
-export interface TodoBridge {
-  addTask: (text: string) => void;
-  onCountChanged: (
-    callback: (total: number, completed: number) => void
-  ) => void;
-  onExternalAdded: (callback: () => void) => void;
-}
 
 declare global {
   interface Window {

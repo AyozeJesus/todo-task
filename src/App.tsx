@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTodo } from './hooks/useTodo';
 import { TodoForm } from './components/todo/TodoForm';
 import { ErrorBanner } from './components/common/ErrorBanner';
