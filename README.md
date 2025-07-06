@@ -5,13 +5,13 @@
 [![jQuery](https://img.shields.io/badge/jQuery-0769AD?style=flat&logo=jquery&logoColor=white)](https://jquery.com/)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=flat&logo=vitest&logoColor=white)](https://vitest.dev/)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-blue?style=flat&logo=github)](https://ayozeleon.github.io/AimHarder-task/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-blue?style=flat&logo=github)](https://ayozejesus.github.io/todo-task/)
 
 > Gestor de tareas profesional desarrollado como prueba técnica. Combina React con jQuery mediante CustomEvents para crear una solución agnóstica y reutilizable.
 
 ## 🚀 Demo en Vivo
 
-**🔗 [Ver Demo en GitHub Pages](https://ayozeleon.github.io/AimHarder-task/)**
+**🔗 [Ver Demo en GitHub Pages](https://ayozejesus.github.io/todo-task/)**
 
 La aplicación se despliega automáticamente en GitHub Pages cada vez que se hace push a la rama main.
 
@@ -204,7 +204,7 @@ El proyecto se despliega automáticamente en GitHub Pages usando GitHub Actions:
 3. **Build** → Genera dist/ optimizado
 4. **Deploy** → Publica en GitHub Pages
 
-**URL del sitio**: https://ayozeleon.github.io/AimHarder-task/
+**URL del sitio**: https://ayozejesus.github.io/todo-task/
 
 ### Configuración del Despliegue
 
@@ -290,15 +290,15 @@ $(document).on('todo:external-added', function () {
 | React                 | 18.3.0  | UI Framework       |
 | TypeScript            | 5.4.5   | Type Safety        |
 | jQuery                | 3.7.1   | Legacy Integration |
-| Vite                  | 5.2.0   | Build Tool         |
-| Vitest                | 1.5.0   | Unit Testing       |
+| Vite                  | 5.4.19  | Build Tool         |
+| Vitest                | 1.6.1   | Unit Testing       |
 | Cypress               | 13.6.4  | E2E Testing        |
 | React Testing Library | 14.2.1  | Component Testing  |
 | GitHub Actions        | -       | CI/CD Pipeline     |
 
 ## 📈 Rendimiento
 
-- **Bundle size**: 235KB (gzip: 79KB)
+- **Bundle size**: ~157KB (JS: 150.89KB, CSS: 6.20KB, gzip: ~50KB)
 - **First Load**: <1s en conexión rápida
 - **Runtime**: Optimizado con useReducer
 - **Memory**: Gestión eficiente del estado
@@ -308,6 +308,7 @@ $(document).on('todo:external-added', function () {
 ## 🤝 Contacto
 
 **Desarrollador**: Ayoze Jesús León Santos
+**GitHub**: https://github.com/AyozeJesus
 **Email**: Ayozejesusleonsantos@gmail.com
 **LinkedIn**: https://www.linkedin.com/in/ayozeleonsantos/
 
