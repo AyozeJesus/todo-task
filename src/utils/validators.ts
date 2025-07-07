@@ -8,17 +8,17 @@ export function validateTaskText(
   const errors: string[] = [];
   const trimmed = text.trim();
 
-  // Check if text is empty
+  // Business rule: Task text cannot be empty
   if (!trimmed) {
     errors.push('empty');
   }
 
-  // Check if text exceeds maximum length
+  // Business rule: Task text has maximum length constraint
   if (trimmed.length > MAX_TASK_LENGTH) {
     errors.push('maxLength');
   }
 
-  // Check for duplicates (case insensitive)
+  // Business rule: Prevent duplicate tasks (case insensitive)
   if (
     existingTasks.some(
       task => task.text.toLowerCase() === trimmed.toLowerCase()
