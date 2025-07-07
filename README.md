@@ -29,8 +29,10 @@ La aplicación se despliega automáticamente en GitHub Pages cada vez que se hac
 ### 🔧 Características Técnicas
 
 - **TypeScript estricto**: Sin tipos `any`, tipado completo
-- **Arquitectura modular**: Componentes reutilizables y bien organizados
-- **Testing exhaustivo**: Unitario, integración y E2E (34 tests)
+- **Arquitectura modular**: Componentes reutilizables y utils especializados
+- **Testing exhaustivo**: Unitario, integración y E2E (52 tests)
+- **Utils especializados**: ID generation, localStorage, validators
+- **Memory-safe**: Sin memory leaks, gestión optimizada de estado
 - **Code Quality**: ESLint + Prettier con reglas estrictas
 - **CI/CD completo**: Lint, tests y deploy automático
 - **Responsive design**: Adaptable a móviles y desktop
@@ -99,27 +101,122 @@ src/
 │       └── ErrorBanner.tsx
 ├── hooks/
 │   └── useTodo.ts         # Hook principal con useReducer
-├── utils/
+├── utils/                 # Utilidades modulares y reutilizables
 │   ├── validators.ts      # Validaciones de negocio
-│   └── errorMessages.ts   # Mensajes de error
+│   ├── errorMessages.ts   # Mensajes de error
+│   ├── idGenerator.ts     # Generación de IDs únicos
+│   └── localStorage.ts    # Gestión de persistencia
 ├── types/                 # Tipos TypeScript
-├── config/               # Constantes
-├── integrations/         # Bridge jQuery
+│   ├── todo.ts           # Tipos de tareas
+│   ├── actions.ts        # Tipos de acciones
+│   ├── state.ts          # Tipos de estado
+│   ├── bridge.ts         # Tipos de integración
+│   ├── components.ts     # Props de componentes
+│   └── error.ts          # Tipos de errores
+├── config/               # Constantes y configuración
+│   └── constants.ts      # Constantes globales
+├── integrations/         # Bridge jQuery-React
+│   └── jqueryBridge.ts   # Comunicación bidireccional
+├── constants/            # Constantes específicas
+│   ├── task.ts          # Constantes de tareas
+│   └── uiText.ts        # Textos de interfaz
 └── styles/              # Estilos CSS
+    └── index.css        # Estilos globales
 ```
 
-### Flujo de Datos
+### Arquitectura de Utils
+
+El proyecto implementa una **capa de utilidades modular** que centraliza la lógica común:
+
+#### 🔧 idGenerator.ts
+
+- **Función**: Generación de IDs únicos y robustos
+- **Algoritmo**: `timestamp + random` para evitar colisiones
+- **Anti-colisiones**: Previene duplicados entre pestañas/instancias
+- **Fallback**: `generateCryptoId()` usando crypto.randomUUID()
+
+#### 💾 localStorage.ts
+
+- **Función**: Gestión centralizada de persistencia
+- **API limpia**: `saveTasks()`, `loadTasks()`, `clearTodoStorage()`
+- **Error handling**: Try-catch en todas las operaciones
+- **Factory pattern**: `createInitialState()` para hooks
+
+#### ✅ validators.ts
+
+- **Función**: Validaciones de negocio centralizadas
+- **Error codes**: Sistema modular de códigos de error
+- **Reutilizable**: Funciones puras, fácilmente testeable
+- **Escalable**: Fácil agregar nuevas validaciones
+
+#### 💬 errorMessages.ts
+
+- **Función**: Mapeo de códigos de error a mensajes
+- **i18n ready**: Preparado para internacionalización
+- **Consistencia**: Mensajes unificados en toda la app
+
+### Flujo de Datos Bidireccional React ↔ jQuery
 
 ```mermaid
 graph TD
-    A[jQuery Input] -->|CustomEvent: todo:add| B[React App]
-    B -->|useTodo Hook| C[useReducer]
-    C -->|State Update| D[Re-render Components]
-    D -->|CustomEvent: todo:count-changed| E[jQuery Counter]
-    D -->|CustomEvent: todo:external-added| F[jQuery Feedback]
+    %% Entrada de datos
+    A[jQuery External Input] -->|CustomEvent: 'todo:add'| B[Document Event Listener]
+    G[React TodoForm] -->|onAdd Function| B
 
-    G[React Form] -->|onAdd| C
-    H[Task Actions] -->|onToggle/onDelete| C
+    %% Procesamiento central
+    B -->|Event Handler| C[useTodo Hook]
+    C -->|dispatch| D[useReducer]
+    D -->|validateTaskText| E[Utils Validators]
+    E -->|validation result| D
+    D -->|generateUniqueId| F[Utils ID Generator]
+    F -->|unique ID| D
+
+    %% Persistencia
+    D -->|State Update| H[localStorage Utils]
+    H -->|saveTasks/saveNextId| I[Browser Storage]
+
+    %% Re-renderizado
+    D -->|New State| J[React Components]
+    J -->|TodoForm| K[Input Form]
+    J -->|TaskList| L[Task Items]
+    J -->|Stats| M[Statistics Display]
+
+    %% Salida hacia jQuery
+    J -->|useEffect| N[Custom Events Dispatcher]
+    N -->|CustomEvent: 'todo:count-changed'| O[jQuery Listeners]
+    N -->|CustomEvent: 'todo:external-added'| P[jQuery Success Feedback]
+
+    %% Acciones de usuario
+    L -->|onToggle/onDelete| C
+    K -->|onSubmit| C
+
+    %% Estilos y clases CSS
+    subgraph "React Ecosystem"
+        B
+        C
+        D
+        J
+        K
+        L
+        M
+        N
+    end
+
+    subgraph "Utils Layer"
+        E
+        F
+        H
+    end
+
+    subgraph "jQuery Ecosystem"
+        A
+        O
+        P
+    end
+
+    subgraph "Browser APIs"
+        I
+    end
 ```
 
 ## 🔍 Calidad de Código
@@ -166,10 +263,11 @@ npm run format
 
 ### Cobertura de Tests
 
-- **34 tests** ejecutándose exitosamente
-- **Unitarios**: Componentes aislados
+- **52 tests** ejecutándose exitosamente
+- **Unitarios**: Componentes, hooks y utils aislados
 - **Integración**: Flujos completos de usuario
 - **E2E**: Cypress para escenarios reales
+- **Utils Testing**: ID generation, localStorage, validators
 
 ### Ejecutar Tests
 
@@ -183,15 +281,30 @@ npm run cypress:open
 
 ### Casos de Prueba Cubiertos
 
+#### Funcionalidad Principal
+
 - ✅ Validación de entrada vacía
 - ✅ Detección de duplicados
 - ✅ Límite de caracteres
 - ✅ Toggle de completado
 - ✅ Eliminación de tareas
-- ✅ Comunicación React ↔ jQuery
 - ✅ Estados vacíos y de error
 - ✅ Actualización de estadísticas
+
+#### Utils & Arquitectura
+
+- ✅ Generación de IDs únicos (timestamp + random)
+- ✅ Gestión robusta de localStorage
+- ✅ Validadores modulares con códigos de error
+- ✅ Manejo de errores de persistencia
+- ✅ Factory functions para estado inicial
+
+#### Integración React ↔ jQuery
+
+- ✅ Comunicación React ↔ jQuery
 - ✅ Eventos específicos para inyección externa
+- ✅ CustomEvents bidireccionales
+- ✅ Feedback de operaciones externas
 
 ## 🚀 Despliegue
 

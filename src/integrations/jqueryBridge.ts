@@ -4,9 +4,17 @@ import { Task } from '../types/todo';
 /**
  * jQuery Bridge for Todo App Integration
  *
- * This module provides integration between the React Todo component
+ * ARCHITECTURAL DECISION: Hybrid React-jQuery Integration
+ *
+ * This module provides seamless integration between the React Todo component
  * and external jQuery-based pages. It enables bidirectional communication
  * through custom events.
+ *
+ * Why this approach?
+ * - Maintains React's unidirectional data flow
+ * - Allows legacy jQuery code to interact with modern React components
+ * - Uses browser's native event system for loose coupling
+ * - Provides clean API surface for external integrations
  *
  * Events:
  * - todo:add (jQuery → React): Add a task from external code
@@ -21,7 +29,12 @@ declare global {
   }
 }
 
-// Screen reader announcement function
+/**
+ * Screen reader announcement function for accessibility
+ *
+ * Creates temporary DOM elements with aria-live attributes to announce
+ * dynamic content changes to assistive technologies
+ */
 function announceToScreenReader(message: string) {
   const announcement = document.createElement('div');
   announcement.setAttribute('aria-live', 'polite');
@@ -31,13 +44,13 @@ function announceToScreenReader(message: string) {
 
   document.body.appendChild(announcement);
 
-  // Remove the announcement after a short delay
+  // Remove the announcement after a short delay to clean up DOM
   setTimeout(() => {
     document.body.removeChild(announcement);
   }, 1000);
 }
 
-// Initialize the bridge
+// Initialize the bridge with public API
 window.TodoBridge = {
   addTask: (text: string) => {
     document.dispatchEvent(
@@ -60,6 +73,12 @@ window.TodoBridge = {
 // Make screen reader function globally available
 window.announceToScreenReader = announceToScreenReader;
 
+/**
+ * jQuery integration initialization
+ *
+ * Sets up DOM manipulation and event handling for the jQuery side
+ * of the application. Runs when DOM is ready.
+ */
 $(function () {
   // Update the counter from localStorage on page load
   function updateCounterFromStorage() {
